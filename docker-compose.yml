@@ -1,0 +1,19 @@
+version: "3.2"
+
+services:
+
+  foo-db:
+    image: mysql:${MYSQL_VERSION:-latest}
+    environment:
+      - "MYSQL_ROOT_PASSWORD=${DB_ROOT_PASS}"
+      - "MYSQL_DATABASE=${DB_NAME}"
+      - "MYSQL_USER=${DB_USER}"
+      - "MYSQL_PASSWORD=${DB_PASS}"
+    volumes:
+      - foo-data:/var/lib/mysql
+    ports:
+      - "33061:3306"
+    container_name: foo-db
+
+volumes:
+  foo-data:
